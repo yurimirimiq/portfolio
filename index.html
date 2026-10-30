@@ -32,7 +32,9 @@ nav .me{font-weight:700}
 nav ul{display:flex;gap:22px;color:var(--sub)}
 nav ul a:hover{color:var(--ink)}
 
-.hero{padding-block:96px 104px}
+.hero{padding-block:88px 96px;display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:48px;align-items:center}
+.hero .photo{margin:0;width:210px;max-width:100%;aspect-ratio:4/5;border-radius:6px;overflow:hidden;background:#F2F2F2}
+.hero .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .hero h1{font-size:clamp(30px,5.2vw,46px);font-weight:700;line-height:1.35;letter-spacing:-.035em;text-wrap:balance}
 .hero p{margin-top:24px;color:var(--sub);font-size:17px;max-width:34em}
 .hero .tags{margin-top:28px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--sub)}
@@ -87,7 +89,8 @@ footer{padding-block:0 40px;font-size:13px;color:var(--faint)}
 
 @media (max-width:640px){
   nav ul{display:none}
-  .hero{padding-block:56px 64px}
+  .hero{padding-block:40px 56px;grid-template-columns:1fr;gap:28px}
+  .hero .photo{width:132px;order:-1}
   .proj,.rows li,.comp li{grid-template-columns:1fr;gap:4px}
   .rows .r{white-space:normal}
   .comp li{grid-template-columns:96px minmax(0,1fr) 36px;gap:14px}
@@ -105,9 +108,12 @@ footer{padding-block:0 40px;font-size:13px;color:var(--faint)}
   </nav>
 
   <header class="hero" id="top">
+    <div>
     <h1>배운 기술을 실제 서비스로 만드는<br>프론트엔드 개발자 강유림입니다.</h1>
     <p>인하대학교 인공지능공학과에서 공부하며 경제학을 부전공하고 있습니다. 2025년 한 해 동안 네 개의 서비스에서 프론트엔드 개발과 UI 디자인을 맡았고, 금융 데이터를 이해하는 AI 개발자를 목표로 하고 있습니다.</p>
     <div class="tags"><span>React · React Native</span><span>TypeScript</span><span>UI Design</span><span>Financial AI</span></div>
+    </div>
+    <figure class="photo"><img src="profile.jpg" alt="강유림 프로필 사진" width="640" height="800"></figure>
   </header>
 
   <section id="projects">

@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="프론트엔드 개발자 강유림의 포트폴리오">
+<title>강유림 포트폴리오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap">
+<style>
+/* Layout: one narrow left-aligned column on white; sections are plain lists with a year/label column, no cards */
+:root{
+  --bg:#FFFFFF; --ink:#111111; --sub:#6B6B6B; --faint:#A3A3A3; --line:#EBEBEB; --accent:#1F5EFF;
+  --f:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:16px;line-height:1.75;letter-spacing:-.01em;
+  padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px));-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+p,h1,h2,h3,ul{margin:0}
+ul{padding:0;list-style:none}
+
+.wrap{max-width:760px;margin:0 auto}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);z-index:5;display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:20px;font-size:14px}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+nav .me{font-weight:700}
+nav ul{display:flex;gap:22px;color:var(--sub)}
+nav ul a:hover{color:var(--ink)}
+
+.hero{padding-block:96px 104px}
+.hero h1{font-size:clamp(30px,5.2vw,46px);font-weight:700;line-height:1.35;letter-spacing:-.035em;text-wrap:balance}
+.hero p{margin-top:24px;color:var(--sub);font-size:17px;max-width:34em}
+.hero .tags{margin-top:28px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--sub)}
+.hero .tags span::before{content:"";display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--faint);margin-right:8px;vertical-align:3px}
+
+section{padding-block:56px;border-top:1px solid var(--line)}
+section > h2{font-size:14px;font-weight:500;color:var(--sub);margin-bottom:32px}
+
+/* project list */
+.proj{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding-block:28px}
+.proj + .proj{border-top:1px solid var(--line)}
+.proj .when{font-size:14px;color:var(--faint);font-variant-numeric:tabular-nums;padding-top:4px}
+.proj h3{font-size:20px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.proj h3 a{display:inline-flex;gap:6px;align-items:baseline}
+.proj h3 a:hover{color:var(--accent)}
+.proj h3 small{font-size:13px;font-weight:400;color:var(--faint)}
+.proj .ev{font-size:14px;color:var(--sub);margin-top:2px}
+.proj .desc{margin-top:12px}
+.proj .did{margin-top:10px;font-size:15px;color:#333}
+.proj .did li{padding-left:14px;position:relative}
+.proj .did li::before{content:"";position:absolute;left:0;top:.8em;width:5px;height:1px;background:var(--faint)}
+.proj .stack{margin-top:12px;font-size:13px;color:var(--faint)}
+.proj .role{font-weight:500;color:var(--ink)}
+
+/* simple two-col rows */
+.rows li{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:24px;padding-block:12px;align-items:baseline}
+.rows .y{font-size:14px;color:var(--faint);font-variant-numeric:tabular-nums}
+.rows .t{min-width:0}
+.rows .t span{display:block;font-size:14px;color:var(--sub)}
+.rows .r{font-size:14px;color:var(--sub);white-space:nowrap}
+
+/* competency */
+.comp-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+.comp-head b{font-size:40px;font-weight:700;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.comp-head span{color:var(--sub);font-size:15px}
+.comp li{display:grid;grid-template-columns:120px minmax(0,1fr) 40px;gap:24px;align-items:center;padding-block:7px;font-size:15px}
+.comp .track{height:4px;background:var(--line);border-radius:2px;position:relative}
+.comp .track i{position:absolute;inset:0 auto 0 0;background:var(--ink);border-radius:2px}
+.comp .low .track i{background:var(--faint)}
+.comp .n{text-align:right;font-variant-numeric:tabular-nums;color:var(--sub);font-size:14px}
+.comp-note{margin-top:20px;font-size:14px;color:var(--sub)}
+
+.contact{padding-block:72px 96px}
+.contact p{font-size:clamp(22px,3.4vw,28px);font-weight:700;letter-spacing:-.03em;line-height:1.45;max-width:20em}
+.contact ul{margin-top:28px;display:grid;gap:6px;font-size:15px}
+.contact li{display:grid;grid-template-columns:80px minmax(0,1fr);gap:12px}
+.contact li span{color:var(--faint)}
+.contact a{border-bottom:1px solid var(--line)}
+.contact a:hover{color:var(--accent);border-color:var(--accent)}
+.contact code{font-family:inherit;user-select:all;overflow-wrap:anywhere}
+footer{padding-block:0 40px;font-size:13px;color:var(--faint)}
+
+@media (max-width:640px){
+  nav ul{display:none}
+  .hero{padding-block:56px 64px}
+  .proj,.rows li,.comp li{grid-template-columns:1fr;gap:4px}
+  .rows .r{white-space:normal}
+  .comp li{grid-template-columns:96px minmax(0,1fr) 36px;gap:14px}
+  section{padding-block:44px}
+}
+</style>
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a class="me" href="#top">강유림</a>
+    <ul><li><a href="#projects">Projects</a></li><li><a href="#activity">Activity</a></li><li><a href="#contact">Contact</a></li></ul>
+  </nav>
+
+  <header class="hero" id="top">
+    <h1>배운 기술을 실제 서비스로 만드는<br>프론트엔드 개발자 강유림입니다.</h1>
+    <p>인하대학교 인공지능공학과에서 공부하며 경제학을 부전공하고 있습니다. 2025년 한 해 동안 네 개의 서비스에서 프론트엔드 개발과 UI 디자인을 맡았고, 금융 데이터를 이해하는 AI 개발자를 목표로 하고 있습니다.</p>
+    <div class="tags"><span>React · React Native</span><span>TypeScript</span><span>UI Design</span><span>Financial AI</span></div>
+  </header>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <article class="proj">
+      <div class="when">2025.08</div>
+      <div>
+        <h3><a href="https://github.com/yurimirimiq/welcome-inhu-project" target="_blank" rel="noopener">놀러와요 인후의 숲 <small>↗</small></a></h3>
+        <p class="ev">멋쟁이사자처럼 13기 중앙해커톤</p>
+        <p class="desc">인하대 후문 식당 사장님의 ‘퀘스트’를 수락하고, 방문 후 영수증으로 인증하면 포인트가 쌓이는 앱입니다. 후문 상권 방문을 게임처럼 즐길 수 있게 만들었습니다.</p>
+        <ul class="did">
+          <li>영수증 촬영 인증 카메라와 포인트 선물 상점</li>
+          <li>식당 도감, 취향 질문으로 식당을 추천하는 AI 챗봇 화면</li>
+        </ul>
+        <p class="stack"><span class="role">FE · UI 디자인</span> — React Native, Expo, TypeScript</p>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="when">2025.07 – 09</div>
+      <div>
+        <h3><a href="https://github.com/yurimirimiq/sumsum" target="_blank" rel="noopener">섬포터즈 <small>↗</small></a></h3>
+        <p class="ev">인하대학교 지역상생 아이디어 공모전</p>
+        <p class="desc">인천 섬 지역과 도움이 필요한 기관을 대학생 봉사자와 연결하는 봉사 매칭 앱입니다. 어르신 디지털 교육, 초등 코딩교육처럼 격차를 줄이는 봉사를 담았습니다.</p>
+        <ul class="did">
+          <li>학생·기관 두 회원 유형에 맞춘 화면과 권한 설계</li>
+          <li>로그인, 공고 검색과 카테고리 필터, 봉사 신청·내역 화면</li>
+        </ul>
+        <p class="stack"><span class="role">FE · UI 디자인</span> — React Native, Expo, TypeScript, Context API</p>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="when">2025.07</div>
+      <div>
+        <h3><a href="https://github.com/InhaH-A-Team/InhaH-A-Team" target="_blank" rel="noopener">유연 <small>↗</small></a></h3>
+        <p class="ev">멋쟁이사자처럼 인하대 해커톤</p>
+        <p class="desc">유기동물과 임시보호자를 연결하는 임시보호 반려동물 매칭 웹 서비스입니다.</p>
+        <ul class="did">
+          <li>해커톤 기간 안에 React로 웹 화면을 완성하고 팀원들과 GitHub로 협업</li>
+        </ul>
+        <p class="stack"><span class="role">FE</span> — React, Vite, JavaScript</p>
+      </div>
+    </article>
+
+    <article class="proj">
+      <div class="when">2025.03 – 07</div>
+      <div>
+        <h3>AND COMPANY <small>비공개 저장소</small></h3>
+        <p class="ev">제13회 아랩 액셀러레이팅 · 제1회 MOONG 연합 커넥톤</p>
+        <p class="desc">다국적 팀의 메시지에서 문화권에 따라 오해될 수 있는 표현을 AI가 짚어 주고, 직역 대신 비즈니스 맥락에 맞는 번역을 제안하는 글로벌 협업 도우미입니다.</p>
+        <ul class="did">
+          <li>대시보드와 문화 감수성 피드백 화면 구현, i18n 다국어 지원</li>
+          <li>GPT API를 백엔드 프록시로만 호출하도록 연동해 API 키 노출 방지</li>
+        </ul>
+        <p class="stack"><span class="role">FE · UI 디자인</span> — React, TypeScript, Zustand, Tailwind CSS</p>
+      </div>
+    </article>
+  </section>
+
+  <section id="activity">
+    <h2>Activity</h2>
+    <ul class="rows">
+      <li><span class="y">2026.01</span><span class="t">미국 네바다 주립대학 연수<span>영어로만 생활하며 소통하는 2주</span></span><span class="r">해외연수</span></li>
+      <li><span class="y">2025.09 – 12</span><span class="t">멋쟁이사자처럼 미니 · 중앙 아이디어톤<span>문제 정의부터 기획과 발표까지</span></span><span class="r">동아리</span></li>
+      <li><span class="y">2025.07 – 08</span><span class="t">AIF Lab 학부연구생<span>금융 데이터에 AI 모델을 적용하는 연구</span></span><span class="r">연구</span></li>
+      <li><span class="y">2025.03 – 12</span><span class="t">인공지능공학과 학생회 홍보부<span>학과 행사와 공지 홍보 콘텐츠 제작</span></span><span class="r">학생회</span></li>
+      <li><span class="y">2025.03 – 08</span><span class="t">멋쟁이사자처럼 13기 프론트엔드 수료<span>HTML·CSS·JavaScript, React, Git 협업</span></span><span class="r">교육</span></li>
+      <li><span class="y">2025.03 – 06</span><span class="t">인하동동 일반수학1 스터디 팀장<span>팀원 3명과 우수 학습공동체 선정</span></span><span class="r">학습공동체</span></li>
+      <li><span class="y">2025.03 – 06</span><span class="t">아동청소년 꿈나무 멘토링<span>지역아동센터 수학 지도, 20시간</span></span><span class="r">봉사</span></li>
+      <li><span class="y">2024.09 – 12</span><span class="t">로미고 이심 크루 6기<span>글로벌 eSIM 브랜드 SNS 콘텐츠 제작</span></span><span class="r">서포터즈</span></li>
+      <li><span class="y">2024.08</span><span class="t">서울신문 전북 인구포럼 서포터즈<span>포럼 홍보와 행사 지원</span></span><span class="r">서포터즈</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Awards</h2>
+    <ul class="rows">
+      <li><span class="y">2025</span><span class="t">학생주도 전공설계 공모전</span><span class="r">우수상</span></li>
+      <li><span class="y">2025</span><span class="t">인하동동 학습공동체</span><span class="r">우수상</span></li>
+      <li><span class="y">2025</span><span class="t">브릿지 숏폼 공모전</span><span class="r">우수상</span></li>
+      <li><span class="y">2025</span><span class="t">북튜버 공모전</span><span class="r">우수상</span></li>
+      <li><span class="y">2025</span><span class="t">고전 영상 콘텐츠 경진대회</span><span class="r">장려상</span></li>
+      <li><span class="y">2024</span><span class="t">고전 영상 콘텐츠 경진대회</span><span class="r">우수상</span></li>
+      <li><span class="y">2025</span><span class="t">비교과 마일리지 장학금</span><span class="r">장학금</span></li>
+      <li><span class="y">2024.12</span><span class="t">TOEIC</span><span class="r">870</span></li>
+    </ul>
+  </section>
+
+  <section class="comp">
+    <h2>I-CORE 핵심역량 진단 · 2026.10</h2>
+    <div class="comp-head"><b>4.1</b><span>종합 점수 / 5.0 · 학과 평균 3.7</span></div>
+    <ul>
+      <li><span>자기관리</span><div class="track"><i style="width:88.6%"></i></div><span class="n">4.43</span></li>
+      <li><span>문제해결</span><div class="track"><i style="width:88.6%"></i></div><span class="n">4.43</span></li>
+      <li><span>디지털 기술 활용</span><div class="track"><i style="width:88.6%"></i></div><span class="n">4.43</span></li>
+      <li><span>윤리·시민·책임</span><div class="track"><i style="width:88.6%"></i></div><span class="n">4.43</span></li>
+      <li><span>의사소통</span><div class="track"><i style="width:80%"></i></div><span class="n">4.00</span></li>
+      <li class="low"><span>창의혁신</span><div class="track"><i style="width:77.2%"></i></div><span class="n">3.86</span></li>
+      <li class="low"><span>글로벌</span><div class="track"><i style="width:68.6%"></i></div><span class="n">3.43</span></li>
+    </ul>
+    <p class="comp-note">회색으로 표시한 창의혁신과 글로벌은 지금 가장 집중해서 키우고 있는 역량입니다.</p>
+  </section>
+
+  <section class="contact" id="contact">
+    <p>소통의 오류와 정보의 격차를 줄이는 개발자가 되고 싶습니다.</p>
+    <ul>
+      <li><span>GitHub</span><a href="https://github.com/yurimirimiq" target="_blank" rel="noopener">github.com/yurimirimiq</a></li>
+      <li><span>Email</span><code>xlalrnldud@naver.com</code></li>
+    </ul>
+  </section>
+
+  <footer>© 2026 Yurim Kang</footer>
+</div>
+</body>
+</html>
